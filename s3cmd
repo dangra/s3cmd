@@ -1580,6 +1580,11 @@ def main():
     except IOError, e:
         if options.run_configure:
             cfg = Config()
+        elif 'AWS_ACCESS_KEY_ID' in os.environ and \
+                'AWS_SECRET_ACCESS_KEY' in os.environ:
+            cfg = Config()
+            cfg.access_key = os.environ['AWS_ACCESS_KEY_ID']
+            cfg.secret_key = os.environ['AWS_SECRET_ACCESS_KEY']
         else:
             error(u"%s: %s"  % (options.config, e.strerror))
             error(u"Configuration file not available.")

@@ -29,6 +29,7 @@ from MultiPart import MultiPartUpload
 from S3Uri import S3Uri
 
 try:
+    raise ImportError
     import magic
     try:
         ## https://github.com/ahupp/python-magic
@@ -47,7 +48,7 @@ except ImportError, e:
     else:
         magic_message = "Module python-magic can't be used (%s)." % e.message
     magic_message += " Guessing MIME types based on file extensions."
-    magic_warned = False
+    magic_warned = True
     def mime_magic(file):
         global magic_warned
         if (not magic_warned):
